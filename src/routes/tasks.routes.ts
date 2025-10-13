@@ -22,17 +22,23 @@ router.get("/", async (req, res, next) => {
 });
 
 // Create a task owned by the authenticated user.
-router.post("/", validate(createTaskSchema), async (req, res, next) => {
-  try {
-    const { userId, title, description } = req.body;
-    if (userId !== (req as any).userId)
-      return res.status(403).json({ message: "Forbidden user" });
-    const created = await tasks.create(userId, title, description);
-    res.status(201).json(created);
-  } catch (e) {
-    next(e);
+router.post(
+  "/",
+  validate(createTaskSchema),
+  async (req, res, next): Promise<void> => {
+    try {
+      const { userId, title, description } = req.body;
+      if (userId !== (req as any).userId) {
+        res.status(403).json({ message: "Forbidden user" });
+        return;
+      }
+      const created = await tasks.create(userId, title, description);
+      res.status(201).json(created);
+    } catch (e) {
+      next(e);
+    }
   }
-});
+);
 
 // Partially update an existing task.
 router.patch("/:id", validate(updateTaskSchema), async (req, res, next) => {

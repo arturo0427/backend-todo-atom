@@ -1,4 +1,6 @@
 import { Request, Response, NextFunction } from "express";
+
+// Centralized error formatting so clients receive consistent responses.
 export function errorHandler(
   err: any,
   _req: Request,

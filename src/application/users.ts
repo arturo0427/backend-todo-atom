@@ -1,8 +1,11 @@
 import bcrypt from "bcryptjs";
 import { UserRepository } from "../domain/ports.js";
+
+// Coordinates user authentication and persistence behavior.
 export class UserService {
   constructor(private readonly users: UserRepository) {}
 
+  // Authenticate by verifying credentials or provisioning a new user record.
   async login(email: string, password: string) {
     if (!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email)) {
       throw new Error("Invalid email format");

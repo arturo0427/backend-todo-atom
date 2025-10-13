@@ -8,6 +8,7 @@ import { buildServices } from "./factory.js";
 const router = Router();
 const { users } = buildServices();
 
+// Authenticate a user and return a signed JWT token.
 router.post("/login", validate(loginSchema), async (req, res, next) => {
   try {
     const { email, password } = req.body;

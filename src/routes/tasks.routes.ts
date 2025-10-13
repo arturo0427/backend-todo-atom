@@ -7,8 +7,10 @@ import { authGuard } from "../middlewares/auth.js";
 const router = Router();
 const { tasks } = buildServices();
 
+// Enforce authentication for all task routes.
 router.use(authGuard);
 
+// Retrieve the task list for the authenticated user.
 router.get("/", async (req, res, next) => {
   try {
     const userId = String((req as any).userId);
@@ -19,6 +21,7 @@ router.get("/", async (req, res, next) => {
   }
 });
 
+// Create a task owned by the authenticated user.
 router.post("/", validate(createTaskSchema), async (req, res, next) => {
   try {
     const { userId, title, description } = req.body;
@@ -31,6 +34,7 @@ router.post("/", validate(createTaskSchema), async (req, res, next) => {
   }
 });
 
+// Partially update an existing task.
 router.patch("/:id", validate(updateTaskSchema), async (req, res, next) => {
   try {
     const updated = await tasks.update(req.params.id, req.body);
@@ -40,6 +44,7 @@ router.patch("/:id", validate(updateTaskSchema), async (req, res, next) => {
   }
 });
 
+// Delete a task permanently.
 router.delete("/:id", async (req, res, next) => {
   try {
     await tasks.remove(req.params.id);

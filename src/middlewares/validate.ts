@@ -1,5 +1,7 @@
 import { Request, Response, NextFunction } from "express";
 import { ZodSchema } from "zod";
+
+// Apply schema validation to the selected request section before invoking handlers.
 export const validate =
   (schema: ZodSchema<any>, target: "body" | "query" = "body") =>
   (req: Request, _res: Response, next: NextFunction) => {

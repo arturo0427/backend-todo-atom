@@ -3,6 +3,7 @@ import "./env.js";
 
 let app = admin.apps[0];
 if (!app) {
+  // Initialize Firebase admin either via credentials file or environment variables.
   if (process.env.GOOGLE_APPLICATION_CREDENTIALS) {
     app = admin.initializeApp();
   } else if (process.env.FIREBASE_PROJECT_ID) {
@@ -18,4 +19,5 @@ if (!app) {
   }
 }
 export const firestore = admin.firestore();
+// Ignore undefined fields to mirror the behavior of plain Firestore SDK.
 firestore.settings({ ignoreUndefinedProperties: true });

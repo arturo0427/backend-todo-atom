@@ -11,8 +11,8 @@ app.use(express.json());
 app.use(cors({ origin: true, credentials: true }));
 
 // Mount core API route groups.
-app.use("/api/auth", authRoutes);
-app.use("/api/tasks", tasksRoutes);
+app.use("/auth", authRoutes);
+app.use("/tasks", tasksRoutes);
 
 app.use(errorHandler);
 export default app;

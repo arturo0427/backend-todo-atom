@@ -25,17 +25,15 @@ jobs:
 
       - name: Install dependencies
         run: |
-          npm install              # instala dependencias del backend raíz
+          npm install
           cd functions
-          npm install              # instala dependencias del directorio de Firebase
+          npm install
 
       - name: Build backend
         run: |
-          npm run build            # compila el backend principal
+          npm run build
 
       - name: Deploy to Firebase Functions
-        uses: FirebaseExtended/action-hosting-deploy@v0
-        with:
-          repoToken: "${{ secrets.GITHUB_TOKEN }}"
-          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_TODO_1A513 }}"
-          projectId: todo-1a513
+        run: |
+          cd functions
+          npx firebase deploy --only functions --token "${{ secrets.FIREBASE_DEPLOY_TOKEN }}"

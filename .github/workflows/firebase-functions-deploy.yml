@@ -25,13 +25,13 @@ jobs:
 
       - name: Install dependencies
         run: |
+          npm install              # instala dependencias del backend raíz
           cd functions
-          npm install
+          npm install              # instala dependencias del directorio de Firebase
 
       - name: Build backend
         run: |
-          cd functions
-          npm run build
+          npm run build            # compila el backend principal
 
       - name: Deploy to Firebase Functions
         uses: FirebaseExtended/action-hosting-deploy@v0

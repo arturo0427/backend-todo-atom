@@ -1,4 +1,4 @@
-name: Deploy Firebase Functions
+name: Deploy Firebase Functions (Backend)
 
 on:
   push:
@@ -8,11 +8,18 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
+    permissions:
+      contents: "read"
+      id-token: "write"
+      actions: "read"
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: 22
 
@@ -21,7 +28,7 @@ jobs:
           cd functions
           npm install
 
-      - name: Build project
+      - name: Build backend
         run: |
           cd functions
           npm run build

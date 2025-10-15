@@ -19,7 +19,7 @@ dotenv.config();
 const firebaseEnv = functions.config();
 
 export const env = {
-  port: Number(process.env.LOCAL_PORT) || 5001,
+  port: Number(process.env.LOCAL_PORT),
   nodeEnv: process.env.NODE_ENV || "production",
   frontendUrl:
     firebaseEnv?.env?.frontend_url ||

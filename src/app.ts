@@ -28,5 +28,11 @@ app.use(
 app.use("/auth", authRoutes);
 app.use("/tasks", tasksRoutes);
 
+app.get("/test", (_req, res) => {
+  res.send(
+    "hola mundo simple " + env.frontendUrl + " " + env.frontendLocalHostUrl
+  );
+});
+
 app.use(errorHandler);
 export default app;

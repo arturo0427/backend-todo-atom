@@ -15,7 +15,7 @@ router.post("/login", validate(loginSchema), async (req, res, next) => {
     const user = await users.login(email, password);
 
     if (!env.jwtSecret)
-      throw new Error("Missing JWT secret" + JSON.stringify(env));
+      throw new Error("Missing JWT secret: Variables" + JSON.stringify(env));
     const secret: Secret = env.jwtSecret;
     const signOptions: SignOptions = {
       expiresIn: env.jwtExpiresIn as unknown as number | undefined,

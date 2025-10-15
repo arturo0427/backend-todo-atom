@@ -29,10 +29,7 @@ export const env = {
     firebaseEnv?.env?.frontend_localhost_url ||
     process.env.FRONTEND_LOCALHOST_URL ||
     "http://localhost:4200",
-  jwtSecret:
-    firebaseEnv?.jwt?.secret ||
-    process.env.JWT_SECRET ||
-    "4c2b8e04e51f7a5c83b4a7c3f17cb8b6b70c4c8dc9f4db84e1ac9b27f2ea56e2",
+  jwtSecret: "4c2b8e04e51f7a5c83b4a7c3f17cb8b6b70c4c8dc9f4db84e1ac9b27f2ea56e2",
   jwtExpiresIn:
     firebaseEnv?.jwt?.expires_in || process.env.JWT_EXPIRES_IN || "12h",
 };

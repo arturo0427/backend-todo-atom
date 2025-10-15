@@ -43,9 +43,6 @@ app.use(
   })
 );
 
-// Manejar OPTIONS requests explícitamente
-app.options("*", cors());
-
 // Mount core API route groups.
 app.use("/auth", authRoutes);
 app.use("/tasks", tasksRoutes);

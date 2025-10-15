@@ -12,23 +12,27 @@
 // };
 
 import dotenv from "dotenv";
+import * as functions from "firebase-functions";
 
 dotenv.config();
 
 const isFirebase = process.env.FIREBASE_CONFIG !== undefined;
+console.log("🚀 ~ isFirebase:", isFirebase);
 
 const getFirebaseConfig = () => {
   if (!isFirebase) return null;
 
   try {
-    const functions = require("firebase-functions");
     return functions.config();
   } catch (error) {
+    console.log("error", error);
+
     return null;
   }
 };
 
 const firebaseConfig = getFirebaseConfig();
+console.log("🚀 ~ firebaseConfig:", firebaseConfig);
 
 export const env = {
   port: Number(process.env.LOCAL_PORT) || 5001,

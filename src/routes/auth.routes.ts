@@ -1,6 +1,6 @@
 import { Router } from "express";
 import jwt, { Secret, SignOptions } from "jsonwebtoken";
-import { env } from "../config/env.js";
+// import { env } from "../config/env.js";
 import { loginSchema } from "../interfaces/dtos.js";
 import { validate } from "../middlewares/validate.js";
 import { buildServices } from "./factory.js";
